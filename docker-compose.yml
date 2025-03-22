@@ -1,0 +1,23 @@
+version: "3.7"
+# make milvus db
+
+services:
+    milvus:
+        image: milvusdb/milvus:latest
+        container_name: milvus
+        ports:
+            - "19530:19530"
+            - "19121:19121"
+        environment:
+            TZ: "Asia/Seoul"
+        volumes:
+            - milvus_data:/var/lib/milvus
+        networks:
+            - milvus-network
+
+volumes:
+    milvus_data:
+
+networks:
+    milvus-network:
+        driver: bridge
